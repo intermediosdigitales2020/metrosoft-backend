@@ -66,23 +66,20 @@ Cliente.findById = (id, result) => {
     });
   };
   
-  Cliente.getAllPublished = result => {
-    sql.query("SELECT * FROM clientes WHERE published=true", (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-      console.log("clientes: ", res);
-      result(null, res);
-    });
-  };
-  
-  Cliente.updateById = (id, Cliente, result) => {
+
+  Cliente.updateById = (id, cliente, result) => {
     sql.query(
-      "UPDATE clientes SET title = ?, description = ?, published = ? WHERE id = ?",
-      [Cliente.title, Cliente.description, Cliente.published, id],
+      "UPDATE clientes SET nombre = ?, correo = ?, rol = ?, telefono = ?, nit = ?, created_at = ?, last_modified = ? WHERE id = ?",
+    [
+        cliente.nombre,
+        cliente.correo,
+        cliente.rol,
+        cliente.telefono,
+        cliente.nit,
+        cliente.created_at,
+        cliente.last_modified = new Date(),
+        id
+    ],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
