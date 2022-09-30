@@ -20,5 +20,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongose": "^0.0.2-security",
     "mysql": "^2.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/intermediosdigitales2020/metrosoft-backend"
   }
 }
