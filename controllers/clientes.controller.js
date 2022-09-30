@@ -32,4 +32,18 @@ exports.create = (req, res) => {
         else res.send(data);
       });
     };
+
+    // Retrieve all Tutorials from the database (with condition).
+exports.findAll = (req, res) => {
+    const title = req.query.title;
+  
+    Cliente.getAll(title, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving Cliente."
+        });
+      else res.send(data);
+    });
+  };
     
