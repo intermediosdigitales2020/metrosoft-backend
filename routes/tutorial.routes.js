@@ -27,6 +27,9 @@ module.exports = app => {
 
     //Crear nuevo tutorial
     router.post("/crearcliente", clientes.create);
+
+    router.get("/clientes", clientes.findAll);
+
   
   
     app.use('/api', router);
