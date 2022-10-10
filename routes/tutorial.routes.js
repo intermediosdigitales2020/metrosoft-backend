@@ -1,6 +1,7 @@
 module.exports = app => {
     const tutorials = require("../controllers/tutorial.controller.js");
     const clientes = require("../controllers/clientes.controller.js");
+    const users = require("../controllers/users.controller.js");
 
     var router = require("express").Router();
   
@@ -27,8 +28,16 @@ module.exports = app => {
 
     //Crear nuevo tutorial
     router.post("/crearcliente", clientes.create);
-
     router.get("/clientes", clientes.findAll);
+
+    router.post("/crearuser", users.create);
+    router.post("/login", users.login);
+    router.get("/usuarios/:id", users.findOne);
+    router.get("/usuarios/cliente/:id", users.findOne);
+
+
+
+
 
   
   

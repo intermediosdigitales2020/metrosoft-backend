@@ -47,11 +47,11 @@ Cliente.findById = (id, result) => {
   };
   
   
-  Cliente.getAll = (title, result) => {
+  Cliente.getAll = (nombre, result) => {
     let query = "SELECT * FROM clientes";
   
-    if (title) {
-      query += ` WHERE title LIKE '%${title}%'`;
+    if (nombre) {
+      query += ` WHERE nombre LIKE '%${nombre}%'`;
     }
   
     sql.query(query, (err, res) => {
