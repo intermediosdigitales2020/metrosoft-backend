@@ -89,7 +89,11 @@ exports.create = async (req, res) => {
                 message:
                   err.message || "Error en el login | Intentar De nuevo"
               });
-            else res.send(data);
+            else res.send({
+              "mensaje": "Inicio de sesion correcto",
+              "token": data.id,
+              "Datos": data
+            });
           });
          }
       });
@@ -127,5 +131,22 @@ exports.create = async (req, res) => {
           });
         }
       } else res.send(data);
+    });
+  };
+
+  exports.findAll = (req, res) => {
+    
+    const title = req.query.title;
+
+    User.getAll(title, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving tutorials."
+        });
+      else res.send({
+        "mensaje": "Todos los usuarios obtenidos",
+        "Datos": data
+      });
     });
   };

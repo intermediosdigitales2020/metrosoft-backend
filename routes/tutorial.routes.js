@@ -13,11 +13,7 @@ module.exports = app => {
   
     // Retrieve all published Tutorials
     router.get("/published", tutorials.findAllPublished);
-  
-    // Retrieve a single Tutorial with id
-    router.get("/:id", tutorials.findOne);
-  
-    // Update a Tutorial with id
+ 
     router.put("/:id", tutorials.update);
   
     // Delete a Tutorial with id
@@ -26,14 +22,17 @@ module.exports = app => {
     // Delete all Tutorials
     router.delete("/", tutorials.deleteAll);
 
-    //Crear nuevo tutorial
+    //Clientes
     router.post("/crearcliente", clientes.create);
     router.get("/clientes", clientes.findAll);
 
+    //USUARIOS
     router.post("/crearuser", users.create);
     router.post("/login", users.login);
+
+    router.get("/usuarios", users.findAll);
     router.get("/usuarios/:id", users.findOne);
-    router.get("/usuarios/cliente/:id", users.findOne);
+    router.get("/usuarios/cliente/:id", users.findbyclient);
 
 
 

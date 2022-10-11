@@ -81,23 +81,41 @@ User.create = (newUser, result) => {
   };
 
   User.getAll = (nombre, result) => {
-    let query = "SELECT * FROM userTable";
-  
-    if (nombre) {
-      query += ` WHERE nombre LIKE '%${nombre}%'`;
-    }
-  
-    sql.query(query, (err, res) => {
+    sql.query(`SELECT * FROM userTable`, (err, res) => {
       if (err) {
         console.log("error: ", err);
-        result(null, err);
+        result(err, null);
         return;
       }
   
-      console.log("clientes: ", res);
-      result(null, res);
+      if (res.length) {
+        console.log("Usuarios:", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found User with the id
+      result({ kind: "not_found" }, null);
     });
   };
 
+  User.findbyclient = (client, result) => {
+    sql.query(`SELECT * FROM userTable WHERE id_cliente = ${client}`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Usuario:", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found User with the id
+      result({ kind: "not_found" }, null);
+    });
+  };
 
   module.exports = User;
