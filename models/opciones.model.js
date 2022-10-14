@@ -25,14 +25,14 @@ const Opciones = function(opcion) {
 
 Opciones.create = (newUser, result) => {
     console.log(newUser)
-    sql.query("INSERT INTO userTable SET ?", newUser, (err, res) => {
+    sql.query("INSERT INTO opciones SET ?", newUser, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
         return;
       }
   
-      console.log("created User: ", { id: res.insertId, ...newUser });
+      console.log("Opcion Creada: ", { id: res.insertId, ...newUser });
       result(null, { id: res.insertId, ...newUser });
     });
   };
